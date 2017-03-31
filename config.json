@@ -1,0 +1,6 @@
+{
+  "Token": "Insert App Bot user token",
+  "ClientID": "Insert App details client id",
+  "BotID": "Username of the bot",
+  "Prefix": "any prefix you want"
+}
