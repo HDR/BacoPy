@@ -30,7 +30,20 @@ with open('commands.json', 'r', encoding='utf-8') as commands_file:
     commands = commands_file.read()
     commands = json.loads(commands)
     print('Loaded commands.')
+	
+	
+def getCPUtemp():
+    res = os.popen('vcgencmd measure_temp').readline()
+    return(res.replace("temp=","").replace("'C\n",""))
+CPU_temp = str(getCPUtemp())
 
+def getCPUuse():
+    return(str(os.popen("top -n1 | awk '/Cpu\(s\):/ {print $2}'").readline().strip(\
+)))
+CPU_load = str(getCPUuse())
+
+RAM_usage = str(psutil.virtual_memory().percent)
+			
 token = (config['Token'])
 if token == '':
     sys.exit('Token not provided, please open config.json and place your token.')
@@ -39,7 +52,7 @@ pfx = (config['Prefix'])
 client = discord.Client()
 
 # Commands
-cmd_pcstats = (commands['cmd_pcstats'])
+cmd_stats = (commands['cmd_stats'])
 cmd_help = (commands['cmd_help'])
 cmd_hentai = (commands['cmd_hentai'])
 cmd_r34 = (commands['cmd_r34'])
@@ -63,7 +76,7 @@ async def on_ready():
     print('-------------------------\n')
     print('-----------------------------------------')
     print('Author: HDR')
-    print('Version: Dev 0.1')
+    print('Version: Dev 0.2')
     print('Build Date: 31 March 2017.')
     print('-----------------------------------------\n')
 
@@ -79,12 +92,10 @@ async def on_message(message):
         await client.send_message(message.channel, 'To be Added')
         cmd_name = 'Hentai'
         print('CMD [' + pfx + cmd_name + '] > ' + initiator_data)
-    elif message.content.startswith(pfx + cmd_pcstats):
-        cmd_name = 'PC Stats'
+    elif message.content.startswith(pfx + cmd_stats):
+        cmd_name = 'Stats'
         await client.send_message(message.channel,
-                                  '**MEM Stats:** \n' + str(psutil.virtual_memory()) + '\n\n **CPU Stats:** \n' + str(
-                                      psutil.cpu_stats()) + '\n\n **CPU Percent:** \n' + str(
-                                      psutil.cpu_percent(percpu=True)))
+                                  '**CPU Load:** \n' + CPU_load + '% \n' + '**CPU Temp:** \n' + CPU_temp + '°C \n' + '***RAM Usage:***\n' + RAM_usage + '%')
         print('CMD [' + pfx + cmd_name + '] > ' + initiator_data)
     elif message.content.startswith('<@' + client.user.id + '>'):
         cmd_name = 'BOT Mentioned'
