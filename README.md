@@ -1,4 +1,4 @@
-# Baco18PlusDiscordBot
+# BacoPy
 
 ## Installation (Raspbian)
 
