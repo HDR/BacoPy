@@ -18,3 +18,7 @@ Praw
 Discord.py
 
 psutil
+
+A Discord Developer Account
+
+A Reddit Developer Account (Make a new account for this bot)
