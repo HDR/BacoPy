@@ -33,6 +33,8 @@ Dynamic Command List
 
 Allow Searching in addition to having it grab a random image/gif
 
+Reverse Image Searches
+
 ## Known issues
 No warning for missing permissions (when removing messages that start with the set prefix and using clear)
 
