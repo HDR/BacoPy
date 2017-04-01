@@ -26,3 +26,5 @@ A Reddit Developer Account (Make a new account for this bot)
 
 ## Known issues
 No warning for missing permissions (when removing messages that start with the set prefix and using clear)
+
+Bot can currently talk in all channels, to fix this simply make a custom role for the bot, and prevent it from being able to read messages in all channels except for target channel.
