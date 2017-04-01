@@ -12,5 +12,9 @@ sudo python3.5 -m pip install psutil
 
 ## Requirements
 Python 3.5
+
 Praw
+
 Discord.py
+
+psutil
