@@ -23,6 +23,13 @@ A Discord Developer Account
 
 A Reddit Developer Account (Make a new account for this bot)
 
+## Planned Features
+
+Permission system
+
+User Blacklist
+
+Dynamic Command List
 
 ## Known issues
 No warning for missing permissions (when removing messages that start with the set prefix and using clear)
