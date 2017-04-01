@@ -68,8 +68,8 @@ cmd_hentai = (commands['cmd_hentai'])
 cmd_r34 = (commands['cmd_r34'])
 cmd_nsfw = (commands['cmd_nsfw'])
 cmd_gif = (commands['cmd_gif'])
+cmd_clear = (commands['cmd_clear'])
 
-# I love spaghetti!
 
 @client.event
 async def on_ready():
@@ -87,7 +87,7 @@ async def on_ready():
     print('-------------------------\n')
     print('-----------------------------------------')
     print('Author: HDR')
-    print('Version: Dev 0.7')
+    print('Version: Dev 0.8')
     print('Build Date: 1 April 2017.')
     print('-----------------------------------------\n')
 
@@ -140,4 +140,12 @@ async def on_message(message):
         posts = gif.random()
         await client.send_message(message.channel, posts.url)
         cmd_name = 'gif'
+    elif message.content.startswith(pfx + cmd_clear):
+        def is_me(m):
+            return m.author == client.user
+        deleted = await client.purge_from(message.channel, limit=100, check=is_me)
+        await client.send_message(message.channel, 'Deleted {} message(s)'.format(len(deleted)))
+        cmd_name = 'clear'
+    if message.content.startswith(pfx):
+        await client.delete_message(message)
 client.run(token)

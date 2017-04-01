@@ -4,5 +4,6 @@
 	"cmd_hentai": "hentai",
 	"cmd_r34": "r34",
     "cmd_nsfw": "nsfw",
-    "cmd_gif": "gif"
+    "cmd_gif": "gif",
+    "cmd_clear": "clear"
 }
