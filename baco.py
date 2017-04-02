@@ -118,7 +118,7 @@ async def on_message(message):
         runtimeint = int(getruntime)
         runtime = str(runtimeint)
         await client.send_message(message.channel,
-                                  '**Runtime:**\n' + runtime + ' Minutes \n**CPU Load:** \n' + CPU_load + '% \n' + '**CPU Temp:** \n' + CPU_temp + '°C \n' + '***RAM Usage:***\n' + RAM_usage + '%')
+                                  '**Runtime:**\n' + runtime + ' Minutes \n**CPU Load:** \n' + CPU_load + '% \n' + '**CPU Temp:** \n' + CPU_temp + '°C \n' + '**RAM Usage:**\n' + RAM_usage + '%')
         print('CMD [' + pfx + cmd_name + '] > ' + initiator_data)
     elif message.content.startswith('<@' + client.user.id + '>'):
         cmd_name = 'BOT Mentioned'
