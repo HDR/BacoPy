@@ -10,16 +10,13 @@ import praw
 
 print('Starting up...')
 start_time = time.time()
-time = time.time()
-current_time = datetime.datetime.now().time()
-current_time.isoformat()
 
 if os.path.isfile('config.json') == False:
-    sys.exit('Fatal Error: config.json is not present.\nIf you didn\'t already, rename config.example.json to config.json and try again.')
+    sys.exit('Fatal Error: config.json is not present.')
 else:
     print('config.json present, continuing...')
 if os.path.isfile('commands.json') == False:
-    sys.exit('Fatal Error: commands.json is not present.\nIf you didn\'t already, rename config.example.json to config.json and try again.')
+    sys.exit('Fatal Error: commands.json is not present.')
 else:
     print('commands.json present, continuing...')
 
@@ -58,7 +55,6 @@ r = praw.Reddit(client_id=rclientid,
                 password=rpassword,
                 user_agent=ruseragent,
                 username=rusername)
-				
 client = discord.Client()
 
 # Commands
@@ -69,6 +65,7 @@ cmd_r34 = (commands['cmd_r34'])
 cmd_nsfw = (commands['cmd_nsfw'])
 cmd_gif = (commands['cmd_gif'])
 cmd_clear = (commands['cmd_clear'])
+
 
 
 @client.event
@@ -87,8 +84,8 @@ async def on_ready():
     print('-------------------------\n')
     print('-----------------------------------------')
     print('Author: HDR')
-    print('Version: Dev 0.8')
-    print('Build Date: 1 April 2017.')
+    print('Version: Dev 0.9')
+    print('Build Date: 2 April 2017.')
     print('-----------------------------------------\n')
 
 @client.event
@@ -116,10 +113,12 @@ async def on_message(message):
             return(str(os.popen("top -n1 | awk '/Cpu\(s\):/ {print $2}'").readline().strip(\
         )))
         CPU_load = str(getCPUuse())
-
         RAM_usage = str(psutil.virtual_memory().percent)
+        getruntime = round(time.time() - start_time, 10) / (60)
+        runtimeint = int(getruntime)
+        runtime = str(runtimeint)
         await client.send_message(message.channel,
-                                  '**CPU Load:** \n' + CPU_load + '% \n' + '**CPU Temp:** \n' + CPU_temp + '°C \n' + '***RAM Usage:***\n' + RAM_usage + '%')
+                                  '**Runtime:**\n' + runtime + ' Minutes \n**CPU Load:** \n' + CPU_load + '% \n' + '**CPU Temp:** \n' + CPU_temp + '°C \n' + '***RAM Usage:***\n' + RAM_usage + '%')
         print('CMD [' + pfx + cmd_name + '] > ' + initiator_data)
     elif message.content.startswith('<@' + client.user.id + '>'):
         cmd_name = 'BOT Mentioned'
@@ -130,22 +129,31 @@ async def on_message(message):
         posts = r34.random()
         await client.send_message(message.channel, posts.url)
         cmd_name = 'r34'
+        print('CMD [' + pfx + cmd_name + '] > ' + initiator_data)
     elif message.content.startswith(pfx + cmd_nsfw):
         nsfw = r.subreddit('nsfw')
         posts = nsfw.random()
         await client.send_message(message.channel, posts.url)
         cmd_name = 'nsfw'
+        print('CMD [' + pfx + cmd_name + '] > ' + initiator_data)
     elif message.content.startswith(pfx + cmd_gif):
         gif = r.subreddit('gifs')
         posts = gif.random()
         await client.send_message(message.channel, posts.url)
         cmd_name = 'gif'
+        print('CMD [' + pfx + cmd_name + '] > ' + initiator_data)
     elif message.content.startswith(pfx + cmd_clear):
         def is_me(m):
             return m.author == client.user
         deleted = await client.purge_from(message.channel, limit=100, check=is_me)
         await client.send_message(message.channel, 'Deleted {} message(s)'.format(len(deleted)))
         cmd_name = 'clear'
+        print('CMD [' + pfx + cmd_name + '] > ' + initiator_data)
+    elif message.content.startswith('debugtest'):
+        getruntime = round(time.time() - start_time, 10) / (60)
+        runtime = int(getruntime)
+        await client.send_message(message.channel, runtime)
+        await client.send_message(message.channel, commands)
     if message.content.startswith(pfx):
         await client.delete_message(message)
 client.run(token)
