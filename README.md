@@ -10,7 +10,7 @@ sudo ./configure
 sudo make
 sudo make altinstall
 sudo apt-get install git
-git clone https://github.com/MrHDR/Baco18PlusDiscordBot.git
+git clone https://github.com/MrHDR/BacoPy.git
 sudo python3.5 -m pip install praw
 sudo python3.5 -m pip install -U discord.py
 sudo python3.5 -m pip install psutil
