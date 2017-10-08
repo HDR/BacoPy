@@ -3,13 +3,14 @@
 ## Installation (Raspbian)
 
 ```
-wget https://www.python.org/ftp/python/3.5.2/Python-3.5.2.tar.xz
-sudo tar -xvf Python-3.5.2.tar.xz
-cd Python-3.5.2
+sudo apt install libssl-dev
+wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0a1.tar.xz
+sudo tar -xvf Python-3.7.0a1.tar.xz
+cd Python-3.7.0a1
 sudo ./configure
 sudo make
 sudo make altinstall
-sudo apt-get install git
+sudo apt install git
 git clone https://github.com/MrHDR/BacoPy.git
 sudo python3.5 -m pip install praw
 sudo python3.5 -m pip install -U discord.py
