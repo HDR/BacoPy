@@ -113,7 +113,7 @@ class BacoPy(discord.Client):
             print('CMD [' + pfx + cmd_name + '] > ' + initiator_data)
         elif message.content.startswith('<@' + self.user.id + '>'):
             cmd_name = 'BOT Mentioned'
-            await self.send_message(message.channel, 'What do you want slut?')
+            await self.send_message(message.channel, 'What?')
             print('CMD [' + pfx + cmd_name + '] > ' + initiator_data)
         elif message.content.startswith(pfx + cmd_r34):
             r34 = r.subreddit('rule34')
@@ -128,9 +128,9 @@ class BacoPy(discord.Client):
             cmd_name = 'nsfw'
             print('CMD [' + pfx + cmd_name + '] > ' + initiator_data)
         elif message.content.startswith(pfx + cmd_gif):
-            gif = r.subreddit('nsfw_gif')
-            posts = gif.random()
-            await self.send_message(message.channel, posts.url)
+            gif = r.subreddit('nsfw_gif+HENTAI_GIF').random()
+            #gif = r.subreddit('nsfw_gif')
+            await self.send_message(message.channel, gif.url)
             cmd_name = 'gif'
             print('CMD [' + pfx + cmd_name + '] > ' + initiator_data)
         elif message.content.startswith(pfx + cmd_clear):
