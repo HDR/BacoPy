@@ -1,9 +1,7 @@
 import discord
-import asyncio
 import sys
 import os
 import time
-import datetime
 import psutil
 import json
 import praw
@@ -40,20 +38,13 @@ if rclientid == '':
 rclientsecret = (config['reddit_client_secret'])
 if rclientsecret == '':
     sys.exit('Reddit Client Secret not provided, please edit config.json.')
-rpassword = (config['reddit_password'])
-if rpassword == '':
-    sys.exit('Reddit Password not provided, please edit config.json.')
-rusername = (config['reddit_username'])
-if rusername == '':
-    sys.exit('Reddit Username not provided, please edit config.json')
 ruseragent = (config['reddit_useragent'])
 if ruseragent == '':
     sys.exit('Reddit UserAgent not provided, please edit config.json')
 
 r = praw.Reddit(client_id=rclientid,
                 client_secret=rclientsecret,
-                user_agent=ruseragent,
-                username=rusername)
+                user_agent=ruseragent)
 client = discord.Client()
 
 # Commands
@@ -137,7 +128,7 @@ class BacoPy(discord.Client):
             cmd_name = 'nsfw'
             print('CMD [' + pfx + cmd_name + '] > ' + initiator_data)
         elif message.content.startswith(pfx + cmd_gif):
-            gif = r.subreddit('gifs')
+            gif = r.subreddit('nsfw_gif')
             posts = gif.random()
             await self.send_message(message.channel, posts.url)
             cmd_name = 'gif'
