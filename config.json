@@ -3,7 +3,5 @@
   "Prefix": "Any Prefix you want (No spaces)",
   "reddit_client_id": "Reddit API Client ID",
   "reddit_client_secret": "Reddit API Client Secret",
-  "reddit_password": "Reddit Account Password",
-  "reddit_username": "Reddit Account login Name",
   "reddit_useragent": "What your bot should be known as"
 }
