@@ -4,9 +4,9 @@
 
 ```
 sudo apt install libssl-dev
-wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0a1.tar.xz
-sudo tar -xvf Python-3.7.0a1.tar.xz
-cd Python-3.7.0a1
+wget https://www.python.org/ftp/python/3.5.2/Python-3.5.2.tar.xz
+sudo tar -xvf Python-3.5.2.tar.xz
+cd Python-3.5.2
 sudo ./configure
 sudo make
 sudo make altinstall
