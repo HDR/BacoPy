@@ -27,7 +27,7 @@ psutil
 
 A Discord Developer Account
 
-A Reddit Developer Account (Make a new account for this bot)
+A Reddit Developer Account
 
 ## Planned Features
 
