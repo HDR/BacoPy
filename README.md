@@ -3,7 +3,11 @@
 ## Installation (Raspbian) - Note: Restart required after installing libssl-dev
 
 ```
-sudo apt install libssl-dev
+sudo apt-get update
+sudo apt-get install build-essential tk-dev
+sudo apt-get install libncurses5-dev libncursesw5-dev libreadline6-dev
+sudo apt-get install libdb5.3-dev libgdbm-dev libsqlite3-dev libssl-dev
+sudo apt-get install libbz2-dev libexpat1-dev liblzma-dev zlib1g-dev
 wget https://www.python.org/ftp/python/3.5.2/Python-3.5.2.tar.xz
 sudo tar -xvf Python-3.5.2.tar.xz
 cd Python-3.5.2
