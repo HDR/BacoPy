@@ -8,7 +8,7 @@ wget https://www.python.org/ftp/python/3.5.2/Python-3.5.2.tar.xz
 sudo tar -xvf Python-3.5.2.tar.xz
 cd Python-3.5.2
 sudo ./configure
-sudo make
+sudo make -j 4
 sudo make altinstall
 sudo apt install git
 git clone https://github.com/MrHDR/BacoPy.git
