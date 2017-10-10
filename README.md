@@ -13,9 +13,9 @@ sudo make -j 4
 sudo make altinstall -j 4
 sudo apt install git
 git clone https://github.com/MrHDR/BacoPy.git
-sudo python3.5 -m pip install praw
-sudo python3.5 -m pip install -U discord.py
-sudo python3.5 -m pip install psutil
+sudo python3.6 -m pip install praw
+sudo python3.6 -m pip install -U discord.py
+sudo python3.6 -m pip install psutil
 ```
 
 ## Requirements
