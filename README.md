@@ -9,7 +9,7 @@ sudo tar -xvf Python-3.5.2.tar.xz
 cd Python-3.5.2
 sudo ./configure
 sudo make -j 4
-sudo make altinstall
+sudo make altinstall -j 4
 sudo apt install git
 git clone https://github.com/MrHDR/BacoPy.git
 sudo python3.5 -m pip install praw
