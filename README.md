@@ -1,6 +1,6 @@
 # BacoPy
 
-## Installation (Raspbian)
+## Installation (Raspbian) - Note: Restart required after installing libssl-dev
 
 ```
 sudo apt install libssl-dev
