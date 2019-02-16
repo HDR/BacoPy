@@ -2,7 +2,8 @@ bot:
     discord_token: ""
     command_prefix: ["--"]
     extensions: [
-        "cogs.stats" ]
+        "cogs.stats",
+        "cogs.reddit"]
 reddit:
     client_id: ""
     client_secret: ""
