@@ -15,6 +15,7 @@ if __name__ == "__main__":
         print('Connected!')
         print(f'Username: {bot.user.name}')
         print(f'ID: {bot.user.id}')
+		print(f'Version: 2.0')
         await bot.change_presence(activity=Game(name="Browsing Reddit"))
 
     for extension in extensions:
