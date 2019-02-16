@@ -76,8 +76,8 @@ class BacoPy(discord.Client):
         print('-------------------------\n')
         print('-----------------------------------------')
         print('Author: HDR')
-        print('Version: 1.0')
-        print('Build Date: 8 October 2017')
+        print('Version: 1.1')
+        print('Build Date: 16 February 2019')
         print('-----------------------------------------\n')
 
     async def on_message(self, message):
@@ -95,21 +95,22 @@ class BacoPy(discord.Client):
             print('CMD [' + pfx + cmd_name + '] > ' + initiator_data)
         elif message.content.startswith(pfx + cmd_stats):
             cmd_name = 'Stats'
-            def getCPUtemp():
-                res = os.popen('vcgencmd measure_temp').readline()
-                return(res.replace("temp=","").replace("'C\n",""))
-            CPU_temp = str(getCPUtemp())
-
-            def getCPUuse():
-                return(str(os.popen("top -n1 | awk '/Cpu\(s\):/ {print $2}'").readline().strip(\
-            )))
-            CPU_load = str(getCPUuse())
+            temps = psutil.sensors_temperatures()
+            core0 = str("Core 0: " + "+" + str(temps)[46:50] + "C\n")
+            core1 = str("Core 1: " + "+" + str(temps)[112:116] + "C\n")
+            core2 = str("Core 2: " + "+" + str(temps)[178:182] + "C\n")
+            core3 = str("Core 3: " + "+" + str(temps)[244:248] + "C")
+            CPU_temp = core0 + core1 + core2 + core3
+            def cpu_percentage():
+                CPU_Pct=str(round(float(os.popen('''grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage }' ''').readline()),2))
+                return(CPU_Pct)
+            CPU_load = str(cpu_percentage())
             RAM_usage = str(psutil.virtual_memory().percent)
             getruntime = round(time.time() - start_time, 10) / (60)
             runtimeint = int(getruntime)
             runtime = str(runtimeint)
             await self.send_message(message.channel,
-                                      '**Runtime:**\n' + runtime + ' Minutes \n**CPU Load:** \n' + CPU_load + '% \n' + '**CPU Temp:** \n' + CPU_temp + '°C \n' + '**RAM Usage:**\n' + RAM_usage + '%')
+                                      '**Runtime:**\n' + runtime + ' Minutes \n**CPU Load:** \n' + CPU_load + '% \n' + '**CPU Temp:** \n' + CPU_temp + '\n' + '**RAM Usage:**\n' + RAM_usage + '%')
             print('CMD [' + pfx + cmd_name + '] > ' + initiator_data)
         elif message.content.startswith('<@' + self.user.id + '>'):
             cmd_name = 'BOT Mentioned'
