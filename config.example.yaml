@@ -1,0 +1,9 @@
+bot:
+    discord_token: ""
+    command_prefix: ["--"]
+    extensions: [
+        "cogs.stats" ]
+reddit:
+    client_id: ""
+    client_secret: ""
+    useragent: ""    
