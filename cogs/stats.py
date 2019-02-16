@@ -18,20 +18,7 @@ class Stats(object):
 		await ctx.channel.trigger_typing()
 		
 		temps = psutil.sensors_temperatures()
-		core0 = str("Core 0: " + "+" + str(temps)[46:50] + "C\n")
-		core1 = str("Core 1: " + "+" + str(temps)[112:116] + "C\n")
-		core2 = str("Core 2: " + "+" + str(temps)[178:182] + "C\n")
-		core3 = str("Core 3: " + "+" + str(temps)[244:248] + "C")
-		CPU_temp = core0 + core1 + core2 + core3
-		def cpu_percentage():
-			CPU_Pct=str(round(float(os.popen('''grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage }' ''').readline()),2))
-			return(CPU_Pct)
-		CPU_load = str(cpu_percentage())
-		RAM_usage = str(psutil.virtual_memory().percent)
-		getruntime = round(time.time() - start_time, 10) / (60)
-		runtimeint = int(getruntime)
-		runtime = str(runtimeint)
-		await ctx.send('**Runtime:** ' + runtime + ' Minutes \n**CPU Load:** ' + CPU_load + '% \n' + '**CPU Temps:** \n' + CPU_temp + '\n' + '**RAM Usage:** ' + RAM_usage + '%')
+		await ctx.send('**Runtime:** ' + str(int(round(time.time() - start_time, 10) / (60))) + ' Minutes \n**CPU Load:** ' + str(round(float(os.popen('''grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage }' ''').readline()),2)) + '% \n' + '**CPU Temps:** \n' + str("Core 0: " + "+" + str(temps)[46:50] + "C\n" + "Core 1: " + "+" + str(temps)[112:116] + "C\n" + "Core 2: " + "+" + str(temps)[178:182] + "C\n" + "Core 3: " + "+" + str(temps)[244:248] + "C") + '\n' + '**RAM Usage:** ' + str(psutil.virtual_memory().percent) + '%')
 		
 def setup(bot):
 	bot.add_cog(Stats(bot))
