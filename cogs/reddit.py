@@ -7,10 +7,10 @@ r = praw.Reddit(client_id=get_section("reddit").get("client_id"), client_secret=
 
 class Reddit(object):
 	"""Nsfw commands."""
-	
+
 	def __init__(self, bot):
 		self.bot = bot
-		
+
 	@commands.command()
 	async def nsfw(self, ctx):
 		"""Grabs a random popular /r/nsfw post"""
@@ -36,7 +36,7 @@ class Reddit(object):
 	async def hentai(self, ctx):
 		"""Grabs a random popular /r/hentai post"""
 		await ctx.channel.trigger_typing()
-		hentai = r.subreddit('hentai').random()
+		hentai = r.subreddit('hentai+HENTAI_GIF').random()
 		await ctx.message.delete()
 		await ctx.send(ctx.message.author.mention + " " + hentai.url)
 	@commands.command()
@@ -45,7 +45,7 @@ class Reddit(object):
 		await ctx.channel.trigger_typing()
 		surprise = r.subreddit('traphentai+delicioustraps+gonewild+nsfw+nsfw_gif+HENTAI_GIF+legalteens+ass+rule34+futanari+hugeboobs+funsized+nsfwcosplay+pornin15seconds+realgirls+asiansgonewild+biggerthanyouthought+petitegonewild+bustypetite+holdthemoan+trashyboners+hentai+ass+watchitfortheplot+milf+adorableporn+onoff+tittydrop+amateur+pawg+gonewildcurvy+happyembarrassedgirls+massivecock+cumsluts+girlsfinishingthejob+asstastic+curvy+gonewild30plus+ecchi+thick+anal+freeuse+bigboobsgw+blowjobs+workgonewild+festivalsluts+juicyasians+yiff+palegirls+stacked+altgonewild+tightdresses+nsfwhardcore+overwatch_porn').random()
 		await ctx.message.delete()
-		await ctx.send(ctx.message.author.mention + " " + surprise.url)
+		await ctx.send(ctx.message.author.mention + " Here is your surprise: " + surprise.url)
 		
 def setup(bot):
 	bot.add_cog(Reddit(bot))
